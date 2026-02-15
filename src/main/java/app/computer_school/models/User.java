@@ -10,14 +10,7 @@ public class User {
     protected String email;
 
     public User(
-            Long id,
-            String firstname,
-            String lastname,
-            String middlename,
-            String bitrthDate,
-            String phone,
-            String email
-    ) {
+            ) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;

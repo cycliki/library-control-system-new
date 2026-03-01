@@ -9,15 +9,16 @@ import java.sql.SQLException;
 public class UserMapper implements IModelMapper<User> {
     @Override
     public User fromResultSet(ResultSet rs) throws SQLException {
+        User user = new User();
 
-        User user= new User();
         user.setId(rs.getLong("id"));
-        user.setFirstname(rs.getString("Firstname"));
-        user.setLastname(rs.getString("Lastname"));
-        user.setMiddlename(rs.getString("midlName"));
-        user.setBitrthDate(rs.getString("Birth_Date"));
-        user.setPhone(rs.getString("Phone"));
-        user.setEmail(rs.getString("Email"));
+        user.setFirstname(rs.getString("firstname"));
+        user.setLastname(rs.getString("lastname"));
+        user.setMiddlename(rs.getString("middlename"));
+        user.setBitrthDate(rs.getString("birth_date"));
+        user.setPhone(rs.getString("phone"));
+        user.setEmail(rs.getString("email"));
+
         return user;
     }
 
@@ -26,38 +27,44 @@ public class UserMapper implements IModelMapper<User> {
         return new Object[]{
                 model.getId(),
                 model.getFirstname(),
-                model.getMiddlename(),
                 model.getLastname(),
+                model.getMiddlename(),
                 model.getBitrthDate(),
                 model.getPhone(),
-                model.getEmail()
+                model.getEmail(),
         };
-
-
     }
+
     @Override
     public String[] getColumnNames() {
-        return new String[0];
+        return new String[]{
+                "id",
+                "firstname",
+                "lastname",
+                "middlename",
+                "birth_date",
+                "phone",
+                "email",
+        };
     }
 
     @Override
     public String getTableName() {
-        return "";
+        return "users";
     }
 
     @Override
     public String getIdColumn() {
-        return "";
+        return "id";
     }
 
     @Override
     public Object getIdValue(User model) {
-        return null;
-
+        return model.getId();
     }
 
     @Override
     public void setIdValue(User model, Object id) {
-        model.setId(new Long ((long)id));
+        model.setId(new Long((long)id));
     }
 }
